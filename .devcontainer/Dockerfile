@@ -14,11 +14,11 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     && source /usr/local/gvm/scripts/gvm \
     && gvm install go${GO_VERSION} \
     && gvm use go${GO_VERSION} --default \
-    && rm gvm-isntaller
+    && rm gvm-isntaller \
 # install pyenv and pythong 3
     && curl -O curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer \
     && chmod +x pyenv-installer \
-    && PYENV_ROOT=/usr/local/pyenv ./pyenv-installer
+    && PYENV_ROOT=/usr/local/pyenv ./pyenv-installer \
 # Install a required font
     && curl -O https://noto-website.storage.googleapis.com/pkgs/NotoSansCJKjp-hinted.zip \
     && mkdir -p /usr/share/fonts/NotoSansCJKjp \
