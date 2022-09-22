@@ -2,23 +2,9 @@
 ARG VARIANT=16-bullseye
 FROM mcr.microsoft.com/vscode/devcontainers/typescript-node:${VARIANT}
 
-ARG GO_VERSION=1.19
 # [Optional] Uncomment this section to install additional OS packages.
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
-    && apt-get -y install --no-install-recommends imagemagick graphviz inkscape curl fontconfig \
-# Install gvm and go
-    && curl -O https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer \
-    && chmod +x gvm-installer \
-    && GVM_NO_UPDATE_PROFILE=true ./gvm-installer master /usr/local \
-    && echo "[[ -s /usr/local/gvm/scripts/gvm ]] && source /usr/local/gvm/scripts/gvm" > /etc/profile.d/gvm.sh \
-    && source /usr/local/gvm/scripts/gvm \
-    && gvm install go${GO_VERSION} \
-    && gvm use go${GO_VERSION} --default \
-    && rm gvm-isntaller \
-# install pyenv and pythong 3
-    && curl -O curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer \
-    && chmod +x pyenv-installer \
-    && PYENV_ROOT=/usr/local/pyenv ./pyenv-installer \
+    && apt-get -y install --no-install-recommends imagemagick graphviz inkscape curl fontconfig golang python3 \
 # Install a required font
     && curl -O https://noto-website.storage.googleapis.com/pkgs/NotoSansCJKjp-hinted.zip \
     && mkdir -p /usr/share/fonts/NotoSansCJKjp \
